@@ -14,8 +14,14 @@ namespace Scrutinizr
 
         public Startup(IHostingEnvironment hostingEnvironment, IApplicationEnvironment appEnvironment)
         {
-            var dataPath = Path.Combine(appEnvironment.ApplicationBasePath, "data\\data.db");
+            var dataDirectory = Path.Combine(appEnvironment.ApplicationBasePath, "data");
+            if (!Directory.Exists(dataDirectory))
+            {
+                Directory.CreateDirectory(dataDirectory);
+            }
 
+            var dataPath = Path.Combine(dataDirectory, "data.db");
+            
             _config = new ConfigurationBuilder()
                 .AddInMemoryCollection(new[] { new KeyValuePair<string, string>("Database", dataPath) })
                 .Build();

@@ -1,0 +1,4 @@
+.vs/
+src/Scrutinizr/data/
+src/Scrutinizr/project.lock.json
+src/Scrutinizr/Scrutinizr.xproj.user

@@ -1,0 +1,40 @@
+﻿@using Scrutinizr.Extensions
+@model Scrutinizr.Models.Receptacle.ReceptacleInspectModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Scrutinizer</title>
+</head>
+<body>
+    <div>
+        <h1>
+            Receptacle: @Model.Receptacle.Id
+        </h1>
+        <h3>Created: @Model.Receptacle.CreatedUtc.ToLocalTime().ToString("f")</h3>
+        <h2>
+            Latest requests
+        </h2>
+        @foreach (var r in Model.Requests)
+        {
+            <div>
+                <div class="header">
+                    <div>
+                        <div>@r.Url</div>
+                        <div>@r.Method</div>
+                    </div>
+                    <div>
+                        <div>@r.Headers.Get("Content-Type","No content type provided")</div>
+                    </div>
+                </div>
+                <div></div>
+
+            </div>
+        }
+    </div>
+</body>
+</html>

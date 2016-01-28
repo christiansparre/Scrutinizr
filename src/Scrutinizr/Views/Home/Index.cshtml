@@ -1,0 +1,32 @@
+﻿@model Scrutinizr.Models.Home.HomeIndexModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Scrutinizer</title>
+</head>
+<body>
+    <div>
+        <h1>
+            Existing receptacles
+        </h1>
+        <div>
+            <form asp-controller="Receptacle" asp-action="Create" method="post">
+                <button type="submit">Create receptacle</button>
+            </form>
+        </div>
+        <ul>
+            @foreach (var r in Model.Receptacles)
+            {
+                <li><a asp-action="Inspect" asp-controller="Receptacle" asp-route-id="@r.Id">@r.Id</a></li>
+            }
+        </ul>
+
+    </div>
+</body>
+</html>

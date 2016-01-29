@@ -43,6 +43,7 @@ namespace Scrutinizr
         {
             app.UseIISPlatformHandler();
             app.UseDeveloperExceptionPage();
+            app.UseStaticFiles();
             app.UseMvc();
         }
 

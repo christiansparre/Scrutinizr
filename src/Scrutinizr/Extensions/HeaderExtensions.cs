@@ -7,9 +7,9 @@ namespace Scrutinizr.Extensions
 {
     public static class HeaderExtensions
     {
-        public static string Get(this IEnumerable<Header> headers, string key, string @default = "")
+        public static string Get(this Dictionary<string, string> headers, string key, string @default = "")
         {
-            return headers.FirstOrDefault(a => a.Key.ToLowerInvariant() == key.ToLowerInvariant())?.Value ?? @default;
+            return headers.ContainsKey(key) ? headers[key] : @default;
         }
     }
 }

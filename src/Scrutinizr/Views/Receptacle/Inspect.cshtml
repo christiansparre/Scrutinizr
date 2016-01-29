@@ -1,40 +1,52 @@
 ﻿@using Scrutinizr.Extensions
 @model Scrutinizr.Models.Receptacle.ReceptacleInspectModel
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<h1 class="receptacle">
+    Receptacle<br />@Model.Receptacle.Id
+</h1>
+<div class="instructions">
+    <p>
+        GET, POST, PUT, DELETE, whatever at
+        <br />
+        <span class="receptacle-url">@Url.Action("Receive", "Receptacle", new { id = Model.Receptacle.Id }, Context.Request.Scheme)</span>
+        <br />
+        to scrutinze your requests
+    </p>
 
-<html>
-<head>
-    <title>Scrutinizer</title>
-</head>
-<body>
-    <div>
-        <h1>
-            Receptacle: @Model.Receptacle.Id
-        </h1>
-        <h3>Created: @Model.Receptacle.CreatedUtc.ToLocalTime().ToString("f")</h3>
-        <h2>
-            Latest requests
-        </h2>
-        @foreach (var r in Model.Requests)
-        {
-            <div>
-                <div class="header">
-                    <div>
-                        <div>@r.Url</div>
-                        <div>@r.Method</div>
-                    </div>
-                    <div>
-                        <div>@r.Headers.Get("Content-Type","No content type provided")</div>
-                    </div>
-                </div>
-                <div></div>
+
+</div>
+<h2>
+    Latest requests
+</h2>
+@foreach (var r in Model.Requests)
+{
+    <div class="request">
+        <div class="header">
+            <div class="info-left">
+                <div>@r.Url.OriginalString.Replace(@r.Url.PathAndQuery, "")</div>
+                <div>@r.Method @r.Url.PathAndQuery</div>
+            </div>
+            <div class="info-right">
+                <div>@r.Headers.Get("Content-Type", "No content type provided") <div class="received">@r.ReceivedAtUtc.ToLocalTime().ToString("G")</div></div>
+                <div>Size: @r.Headers.Get("Content-Length", "NA")</div>
 
             </div>
-        }
+        </div>
+        <div class="content">
+            <div class="info-left">
+                <h4>
+                    Body
+                </h4>
+                @Html.Raw(r.Body)
+            </div>
+            <div class="info-right">
+                <h4>Headers</h4>
+                @foreach (var header in r.Headers)
+                {
+                    <div><strong>@header.Key:</strong> @header.Value</div>
+                }
+            </div>
+        </div>
+
     </div>
-</body>
-</html>
+}

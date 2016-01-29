@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/site.css" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <header>
+        <div>
+            <h1>
+                Scrutinizr
+            </h1>
+        </div>
+        <div class="navigation">
+            <a asp-action="Index" asp-controller="Home">Home</a>
+        </div>
+    </header>
+    <div class="site-content">
+        @RenderBody()
+    </div>
+</body>
+</html>

@@ -11,6 +11,7 @@ dnvm use 1.0.0-rc1-update1
 ```
 Then you should be able to run
 ```
+dnu restore
 dnx -p .\src\Scrutinizr\ web
 ```
 And open http://localhost:5000 in your browser

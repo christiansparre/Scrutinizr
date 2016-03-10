@@ -51,7 +51,7 @@ namespace Scrutinizr.Controllers
             if (request.Headers.ContainsKey("Content-Type"))
             {
                 var contentType = request.Headers["Content-Type"];
-                if (contentType == "text/plain" || contentType == "application/json")
+                if (contentType == "text/plain" || contentType == "application/json" || contentType == "application/json; charset=utf-8")
                 {
                     var bodyAsString = Encoding.UTF8.GetString(request.Body);
 
